@@ -229,6 +229,16 @@ class GeminiClient(BaseLLMClient):
             # Extract tool calls
             tool_calls = self._extract_tool_calls(response)
             
+            # Extract token usage
+            usage = None
+            if hasattr(response, 'usage_metadata'):
+                metadata = response.usage_metadata
+                usage = {
+                    "prompt_tokens": getattr(metadata, 'prompt_token_count', 0),
+                    "completion_tokens": getattr(metadata, 'candidates_token_count', 0),
+                    "total_tokens": getattr(metadata, 'total_token_count', 0)
+                }
+            
             # Debug: Check if we got code generation instead of function calls
             if not tool_calls and content and ("tool_code" in content or "default_api" in content):
                 # Model is generating code instead of function calls
@@ -242,7 +252,8 @@ class GeminiClient(BaseLLMClient):
             result = {
                 "content": content,
                 "role": "assistant",
-                "tool_calls": tool_calls
+                "tool_calls": tool_calls,
+                "usage": usage
             }
             
             return result

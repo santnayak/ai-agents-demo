@@ -1,0 +1,17 @@
+# Python dependencies for AI Agent Demos
+
+# Core dependencies
+python-dotenv==1.0.0
+
+# LLM Clients
+openai
+anthropic
+google-genai
+
+
+# Utilities
+requests==2.31.0
+rich==13.7.0  # For beautiful trace visualization
+httpx>=0.27.0,<0.29.0  # Compatible with openai client
+
+
