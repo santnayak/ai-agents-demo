@@ -1,4 +1,6 @@
 # Python dependencies for AI Agent Demos
+mudipu==1.0.0
+
 
 # Core dependencies
 python-dotenv==1.0.0
