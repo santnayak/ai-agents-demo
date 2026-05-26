@@ -36,3 +36,6 @@ dist/
 
 mudipu-sdk-python
 planned
+
+# Generated trace output files
+traces/
